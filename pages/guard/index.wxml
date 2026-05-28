@@ -1,0 +1,100 @@
+<view class="guard-page guard-page--{{theme}}">
+  <view class="guard-nav" style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px;">
+    <view class="guard-nav__inner">
+      <view class="guard-nav__back" bindtap="handleBackTap">
+        <text class="guard-nav__back-icon">‹</text>
+        <text>返回</text>
+      </view>
+      <view class="guard-nav__title">守护中</view>
+      <view class="guard-nav__placeholder" />
+    </view>
+  </view>
+
+  <view class="guard-page__body" style="padding-top: {{navTotalHeight}}px;">
+    <!-- 微信提醒引导 -->
+    <view class="subscribe-guide card" wx:if="{{subscribeGuideVisible}}">
+      <view class="subscribe-guide__title">离开小程序后也提醒你吗？</view>
+      <view class="subscribe-guide__desc">开启后，到达建议时长时，我们会通过微信服务通知提醒你及时结束本次守护。</view>
+      <view class="subscribe-guide__actions">
+        <view class="subscribe-guide__btn subscribe-guide__btn--primary" bindtap="handleSubscribeEnable">
+          {{subscribeLoading ? '授权中...' : '开启微信提醒'}}
+        </view>
+        <view class="subscribe-guide__btn subscribe-guide__btn--secondary" bindtap="handleSubscribeSkip">仅小程序内提醒</view>
+      </view>
+    </view>
+
+    <!-- 订阅状态提示 -->
+    <view class="subscribe-status card" wx:if="{{subscribeStatusText && !subscribeGuideVisible}}">
+      <view class="subscribe-status__text {{subscribeStatus === 'accepted' ? 'subscribe-status__text--success' : ''}}">{{subscribeStatusText}}</view>
+    </view>
+
+    <view class="guard-card card">
+      <view class="guard-card__label">本次如厕时长</view>
+      <view class="guard-card__time">{{durationText}}</view>
+      <view class="guard-card__target">推荐攻略时间：{{recommendedText}}</view>
+      <view class="guard-card__tip">{{tipText}}</view>
+    </view>
+
+    <view class="guard-stage card">
+      <view class="guard-stage__badge guard-stage__badge--{{theme}}">{{stageText}}</view>
+      <progress-timeline
+        duration="{{duration}}"
+        remind5-time="{{remind5Time}}"
+        remind8-time="{{remind8Time}}"
+        remind10-time="{{remind10Time}}"
+      />
+    </view>
+
+    <view class="guard-action">
+      <primary-button
+        text="结束守护"
+        disabled="{{isFinished}}"
+        bind:tap="handleStopTap"
+      />
+      <view class="guard-action__hint">结束后将保存本次守护记录</view>
+    </view>
+  </view>
+
+  <remind-modal
+    visible="{{showRemindModal}}"
+    type="{{remindType}}"
+    title="{{remindTitle}}"
+    content="{{remindContent}}"
+    primary-text="{{remindPrimaryText}}"
+    secondary-text="{{remindSecondaryText}}"
+    bind:primary="handleRemindPrimary"
+    bind:secondary="handleRemindSecondary"
+  />
+
+  <confirm-modal
+    visible="{{showEndConfirm}}"
+    title="确定结束本次守护？"
+    content="{{endConfirmContent}}"
+    primary-text="确认结束"
+    secondary-text="继续守护"
+    primary-type="primary"
+    bind:primary="handleEndConfirm"
+    bind:secondary="handleEndContinue"
+  />
+
+  <confirm-modal
+    visible="{{showExitConfirm}}"
+    title="守护还在进行中"
+    content="直接离开将不会保存本次记录，确定退出吗？"
+    primary-text="放弃退出"
+    secondary-text="继续守护"
+    primary-type="danger"
+    bind:primary="handleExitConfirm"
+    bind:secondary="handleExitContinue"
+  />
+
+  <result-modal
+    visible="{{showResultModal}}"
+    result-tag="{{resultTag}}"
+    title="{{resultTitle}}"
+    content="{{resultContent}}"
+    is-goal-achieved="{{isGoalAchieved}}"
+    bind:viewreport="handleViewReport"
+    bind:backhome="handleBackHome"
+  />
+</view>

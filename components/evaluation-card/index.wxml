@@ -1,0 +1,12 @@
+<view class="evaluation-card evaluation-card--{{theme}} card">
+  <view class="evaluation-card__icon">
+    <text wx:if="{{theme === 'green'}}">🌿</text>
+    <text wx:elif="{{theme === 'orange'}}">⏰</text>
+    <text wx:elif="{{theme === 'red'}}">⚠️</text>
+    <text wx:else>📋</text>
+  </view>
+  <view class="evaluation-card__content">
+    <view class="evaluation-card__title">{{title}}</view>
+    <view class="evaluation-card__desc">{{desc}}</view>
+  </view>
+</view>

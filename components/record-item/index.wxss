@@ -1,0 +1,57 @@
+.record-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-item__time {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #263238;
+}
+
+.record-item__duration {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.record-item__right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.record-item__tag {
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.record-item__tag--excellent,
+.record-item__tag--good {
+  background: #eaf7e8;
+  color: #3d8b32;
+}
+
+.record-item__tag--overtime {
+  background: #fff7e6;
+  color: #d97706;
+}
+
+.record-item__tag--risk {
+  background: #ffecec;
+  color: #dc2626;
+}
+
+.record-item__badge {
+  font-size: 20rpx;
+  color: #58b947;
+}

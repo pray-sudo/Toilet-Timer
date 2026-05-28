@@ -1,0 +1,20 @@
+<view wx:if="{{visible}}" class="remind-modal" catchtouchmove="stopPropagation">
+  <view class="remind-modal__mask" />
+  <view class="remind-modal__panel remind-modal__panel--{{type}}">
+    <view class="remind-modal__icon remind-modal__icon--{{type}}">
+      <text wx:if="{{type === 'mild'}}">✓</text>
+      <text wx:elif="{{type === 'warning'}}">!</text>
+      <text wx:else>!</text>
+    </view>
+    <view class="remind-modal__title">{{title}}</view>
+    <view class="remind-modal__content">{{content}}</view>
+    <view class="remind-modal__actions">
+      <button class="remind-modal__btn remind-modal__btn--primary remind-modal__btn--{{type}}" bindtap="handlePrimary">
+        {{primaryText}}
+      </button>
+      <button class="remind-modal__btn remind-modal__btn--secondary" bindtap="handleSecondary">
+        {{secondaryText}}
+      </button>
+    </view>
+  </view>
+</view>

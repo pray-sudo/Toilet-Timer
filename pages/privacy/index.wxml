@@ -1,0 +1,54 @@
+<view class="legal-page page-container">
+  <view class="legal-card card">
+    <view class="legal-title">隐私政策</view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">1. 我们收集哪些信息</view>
+      <view class="legal-section__text">
+        肛好卫士会在本地记录你的守护数据，包括每次守护的开始时间、结束时间、守护时长、是否达标、是否触发提醒等信息。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">2. 信息如何存储</view>
+      <view class="legal-section__text">
+        当前版本的数据优先存储在你的设备本地，用于生成今日战报、历史记录和基础趋势统计。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">3. 信息如何使用</view>
+      <view class="legal-section__text">
+        这些数据仅用于帮助你查看如厕时长变化、达标情况和健康习惯趋势，不会用于医疗诊断。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">4. 信息是否上传云端</view>
+      <view class="legal-section__text">
+        当前版本暂不提供账号登录和云端同步能力，守护记录主要保存在本地设备中。如未来接入云端同步能力，我们会在使用前向你说明数据上传、存储、删除和授权方式。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">5. 用户如何清空数据</view>
+      <view class="legal-section__text">
+        你可以在「我的 - 设置 - 清空本地数据」中清空守护记录和勋章进度。清空后，历史战报和趋势数据将无法恢复，但你的提醒设置会保留。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">6. 健康提示与免责声明</view>
+      <view class="legal-section__text">
+        肛好卫士仅作为健康习惯辅助工具，不提供医疗诊断、治疗建议或疾病判断。如果你出现便血、疼痛、脱出、持续不适等情况，请及时咨询医生或专业医疗机构。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">7. 后续能力说明</view>
+      <view class="legal-section__text">
+        后续如果增加账号登录、云端同步或分享功能，我们会根据实际功能补充隐私说明。
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,37 @@
+.stat-card {
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(38, 50, 56, 0.05);
+  min-height: 140rpx;
+}
+
+.stat-card__label {
+  font-size: 24rpx;
+  color: #6b7280;
+  margin-bottom: 12rpx;
+}
+
+.stat-card__value-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.stat-card__value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #263238;
+  line-height: 1.2;
+}
+
+.stat-card__unit {
+  margin-left: 8rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.stat-card__sub {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #9ca3af;
+}

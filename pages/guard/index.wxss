@@ -1,0 +1,200 @@
+.guard-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eaf7e8 0%, #f7faf5 35%, #f7faf5 100%);
+  padding-bottom: calc(48rpx + env(safe-area-inset-bottom));
+}
+
+.guard-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(247, 250, 245, 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.guard-nav__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.guard-nav__back {
+  display: flex;
+  align-items: center;
+  min-width: 120rpx;
+  font-size: 28rpx;
+  color: #263238;
+}
+
+.guard-nav__back-icon {
+  font-size: 44rpx;
+  line-height: 1;
+  margin-right: 4rpx;
+}
+
+.guard-nav__title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #263238;
+}
+
+.guard-nav__placeholder {
+  min-width: 120rpx;
+}
+
+.guard-page__body {
+  padding: 24rpx 32rpx 0;
+}
+
+.guard-card {
+  padding: 48rpx 32rpx;
+  text-align: center;
+}
+
+.guard-card__label {
+  font-size: 28rpx;
+  color: #6b7280;
+}
+
+.guard-card__time {
+  margin-top: 16rpx;
+  font-size: 96rpx;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 2rpx;
+  font-variant-numeric: tabular-nums;
+}
+
+.guard-page--green .guard-card__time {
+  color: #58b947;
+}
+
+.guard-page--orange .guard-card__time {
+  color: #f59e0b;
+}
+
+.guard-page--red .guard-card__time {
+  color: #e5484d;
+}
+
+.guard-card__target {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #263238;
+  font-weight: 600;
+}
+
+.guard-card__tip {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.guard-stage {
+  margin-top: 24rpx;
+  padding: 32rpx 28rpx;
+}
+
+.guard-stage__badge {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  margin-bottom: 28rpx;
+}
+
+.guard-stage__badge--green {
+  background: #eaf7e8;
+  color: #3d8b32;
+}
+
+.guard-stage__badge--orange {
+  background: #fff7e6;
+  color: #d97706;
+}
+
+.guard-stage__badge--red {
+  background: #ffecec;
+  color: #dc2626;
+}
+
+/* ---- 订阅引导 ---- */
+.subscribe-guide {
+  padding: 28rpx 32rpx;
+  margin-bottom: 20rpx;
+  background: linear-gradient(135deg, #eef7e6 0%, #f5faf0 100%);
+  border: 1rpx solid rgba(88, 185, 71, 0.2);
+}
+
+.subscribe-guide__title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #263238;
+}
+
+.subscribe-guide__desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.subscribe-guide__actions {
+  margin-top: 20rpx;
+  display: flex;
+  gap: 16rpx;
+}
+
+.subscribe-guide__btn {
+  flex: 1;
+  height: 72rpx;
+  border-radius: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.subscribe-guide__btn--primary {
+  background: linear-gradient(135deg, #6cc258 0%, #4a9e3c 100%);
+  color: #fff;
+}
+
+.subscribe-guide__btn--secondary {
+  background: #f2f2f2;
+  color: #666;
+}
+
+/* ---- 订阅状态 ---- */
+.subscribe-status {
+  padding: 16rpx 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.subscribe-status__text {
+  font-size: 24rpx;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.subscribe-status__text--success {
+  color: #3d8b32;
+}
+
+.guard-action {
+  margin-top: 40rpx;
+}
+
+.guard-action__hint {
+  margin-top: 16rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #9ca3af;
+}

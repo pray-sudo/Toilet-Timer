@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "健康趋势",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "stat-card": "/components/stat-card/index",
+    "primary-button": "/components/primary-button/index"
+  }
+}

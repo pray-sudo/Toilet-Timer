@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "progress-timeline": "/components/progress-timeline/index",
+    "remind-modal": "/components/remind-modal/index",
+    "confirm-modal": "/components/confirm-modal/index",
+    "result-modal": "/components/result-modal/index",
+    "primary-button": "/components/primary-button/index"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "战报",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "date-switcher": "/components/date-switcher/index",
+    "stat-card": "/components/stat-card/index",
+    "evaluation-card": "/components/evaluation-card/index",
+    "report-record-card": "/components/report-record-card/index",
+    "primary-button": "/components/primary-button/index"
+  }
+}

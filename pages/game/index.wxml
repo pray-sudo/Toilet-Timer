@@ -1,0 +1,175 @@
+<view class="game-page {{toiletLevelClass}}" style="padding-top: {{navTotalHeight}}px;"
+  catchtouchmove="onDragMove" catchtouchend="onDragEnd" catchtouchcancel="onDragEnd">
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar__back" catchtap="handleBackTap">
+      <text class="nav-bar__arrow">‹</text>
+    </view>
+    <view class="nav-bar__title">小卫士厕所调度站</view>
+    <view class="nav-bar__placeholder"></view>
+  </view>
+
+  <!-- 顶部数据 -->
+  <view class="game-header">
+    <view class="header-card header-card--time">
+      <text class="header-label">剩余时间</text>
+      <text class="header-value {{remainingSeconds <= 30 ? 'header-value--warn' : ''}}">{{remainingText}}</text>
+    </view>
+    <view class="header-card">
+      <text class="header-label">已完成</text>
+      <text class="header-value">{{gameResult.servedUsers}}</text>
+    </view>
+    <view class="header-card">
+      <text class="header-label">离开</text>
+      <text class="header-value header-value--miss">{{gameResult.missedUsers}}</text>
+    </view>
+  </view>
+
+  <!-- 等级 + 排队人数 -->
+  <view class="game-sub-header">
+    <text class="sub-stat">排队 {{queue.length}}</text>
+    <view class="sub-stat sub-stat--level">
+      <text>{{toiletLevel}}星 {{toiletLevelName}}</text>
+    </view>
+  </view>
+
+  <!-- 订阅提示 -->
+  <view class="subscribe-bar" wx:if="{{subscribeGuideVisible && gameStatus === 'playing'}}">
+    <text class="subscribe-bar__text">开启微信提醒，到点一定叫你</text>
+    <view class="subscribe-bar__btn" catchtap="onEnableSubscribe" loading="{{subscribeLoading}}">
+      <text>开启提醒</text>
+    </view>
+    <view class="subscribe-bar__skip" catchtap="onSkipSubscribe">
+      <text class="subscribe-bar__skip-text">跳过</text>
+    </view>
+  </view>
+
+  <!-- 排队区 -->
+  <view class="queue-area" wx:if="{{gameStatus === 'playing' || gameStatus === 'completed' || gameStatus === 'overtime'}}">
+    <view class="queue-title">排队中</view>
+    <view class="queue-list">
+      <view
+        class="npc npc--{{item.status}} {{item.waitLevel ? 'npc-wait--' + item.waitLevel : ''}} {{dragging && dragType === 'npc' && dragItemId === item.id ? 'npc--dragging' : ''}}"
+        wx:for="{{queue}}" wx:key="id"
+        data-idx="{{index}}" catchtouchstart="onNpcTouchStart">
+        <view class="npc-avatar">{{item.emoji}}</view>
+        <view class="wait-bar wait-bar--{{item.waitLevel}}">
+          <view class="wait-bar__fill"></view>
+        </view>
+        <text class="npc-name">{{item.name}}</text>
+      </view>
+      <view class="queue-empty" wx:if="{{queue.length === 0}}">暂无排队</view>
+    </view>
+  </view>
+
+  <!-- 隔间区域 -->
+  <view class="stall-area" wx:if="{{gameStatus === 'playing' || gameStatus === 'completed' || gameStatus === 'overtime'}}">
+    <!-- 5星豪华装饰 -->
+    <view class="luxury-stars" wx:if="{{toiletLevel === 5}}">⭐ ⭐ ⭐</view>
+
+    <view
+      class="stall stall--{{item.status}} {{dragOverStall === item.id ? 'stall--highlight' : ''}}"
+      wx:for="{{stalls}}" wx:key="id">
+      <view class="stall-num">{{item.num}}</view>
+      <view class="stall-icon">
+        <text wx:if="{{item.status === 'idle'}}">🚽</text>
+        <text wx:if="{{item.status === 'occupied'}}">{{item.occupant.emoji}}</text>
+        <text wx:if="{{item.status === 'dirty'}}">🧹</text>
+        <text wx:if="{{item.status === 'no_paper'}}">🧻</text>
+        <text wx:if="{{item.status === 'trash_full'}}">🗑️</text>
+        <text wx:if="{{item.status === 'broken'}}">🔧</text>
+        <text wx:if="{{item.status === 'processing'}}">⏳</text>
+      </view>
+      <view class="stall-label">
+        <text wx:if="{{item.status === 'idle'}}">空闲</text>
+        <text wx:if="{{item.status === 'occupied'}}">{{item.occupant.name}}</text>
+        <text wx:if="{{item.status === 'dirty'}}">待清洁</text>
+        <text wx:if="{{item.status === 'no_paper'}}">缺纸了</text>
+        <text wx:if="{{item.status === 'trash_full'}}">垃圾满</text>
+        <text wx:if="{{item.status === 'broken'}}">小故障</text>
+        <text wx:if="{{item.status === 'processing'}}">处理中</text>
+      </view>
+      <view class="stall-progress" wx:if="{{item.status === 'occupied' || item.status === 'processing'}}">
+        <view class="stall-progress__fill stall-progress__fill--{{item.status}}" style="animation: progressFill {{item.useDuration}}ms linear forwards;"></view>
+      </view>
+      <view class="stall-hint" wx:if="{{item.status === 'idle' && queue.length > 0}}">拖入</view>
+      <view class="stall-hint stall-hint--tool" wx:if="{{item.status === 'dirty'}}">🧹</view>
+      <view class="stall-hint stall-hint--tool" wx:if="{{item.status === 'no_paper'}}">🧻</view>
+      <view class="stall-hint stall-hint--tool" wx:if="{{item.status === 'trash_full'}}">🗑️</view>
+      <view class="stall-hint stall-hint--tool" wx:if="{{item.status === 'broken'}}">🔧</view>
+    </view>
+  </view>
+
+  <!-- 日志面板 -->
+  <view class="game-log-panel" wx:if="{{gameLogs.length > 0 && (gameStatus === 'playing' || gameStatus === 'completed' || gameStatus === 'overtime')}}">
+    <view class="game-log-item game-log-item--{{item.type}}" wx:for="{{gameLogs}}" wx:key="id">
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+
+  <!-- 工具栏 -->
+  <view class="tool-area" wx:if="{{gameStatus === 'playing'}}">
+    <view class="tool" data-tool="mop" catchtouchstart="onToolTouchStart">
+      <text class="tool-icon">🧹</text><text class="tool-name">拖把</text>
+    </view>
+    <view class="tool" data-tool="paper" catchtouchstart="onToolTouchStart">
+      <text class="tool-icon">🧻</text><text class="tool-name">厕纸</text>
+    </view>
+    <view class="tool" data-tool="trash" catchtouchstart="onToolTouchStart">
+      <text class="tool-icon">🗑️</text><text class="tool-name">垃圾袋</text>
+    </view>
+    <view class="tool" data-tool="wrench" catchtouchstart="onToolTouchStart" wx:if="{{toiletLevel >= 3}}">
+      <text class="tool-icon">🔧</text><text class="tool-name">扳手</text>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="bottom-actions" wx:if="{{gameStatus === 'playing'}}">
+    <view class="btn-finish" catchtap="onFinishGuard">我结束了</view>
+  </view>
+
+  <!-- 拖拽幽灵 -->
+  <view class="drag-ghost" wx:if="{{dragging}}" style="left: {{dragX}}px; top: {{dragY}}px;">
+    <text class="drag-ghost__emoji">{{dragEmoji}}</text>
+    <text class="drag-ghost__label" wx:if="{{dragLabel}}">{{dragLabel}}</text>
+  </view>
+
+  <!-- 结果弹窗 -->
+  <view class="result-mask" wx:if="{{resultVisible}}" catchtap="">
+    <view class="result-card">
+      <view class="result-title">调度完成！</view>
+      <view class="result-served">服务了 {{gameResult.servedUsers}} 位小动物</view>
+      <view class="result-miss" wx:if="{{gameResult.missedUsers > 0}}">{{gameResult.missedUsers}} 位小伙伴去找了其他厕所</view>
+
+      <!-- 等级经验展示 -->
+      <view class="result-exp-section">
+        <view class="result-exp" wx:if="{{expGained > 0}}">本局成长值 +{{expGained}}</view>
+        <view class="result-exp result-exp--zero" wx:if="{{expGained <= 0}}">本局未获得成长值</view>
+        <view class="result-level">当前 {{toiletLevel}}星 {{toiletLevelName}}</view>
+        <view class="result-upgrade" wx:if="{{expUpgraded}}">🎉 厕所升级啦！升级为 {{expNextName}}</view>
+        <view class="result-next" wx:if="{{!expUpgraded && expRemaining > 0}}">距离{{expNextName}}还差 {{expRemaining}} 成长值</view>
+      </view>
+
+      <view class="result-stats">
+        <text>清洁 {{gameResult.cleanedStalls}} · 补纸 {{gameResult.refilledPaper}} · 修理 {{gameResult.fixedStalls}} · 垃圾 {{gameResult.clearedTrash}}</text>
+      </view>
+
+      <view class="result-tip">现在该起身活动了</view>
+      <view class="result-actions">
+        <view class="result-btn result-btn--primary" catchtap="onFinishGuard">我结束了</view>
+        <view class="result-btn result-btn--secondary" catchtap="onEnterOvertime">再坐一会儿</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 超时面板 -->
+  <view class="overtime-panel" wx:if="{{gameStatus === 'overtime'}}">
+    <view class="overtime-card">
+      <text class="overtime-icon">⚠️</text>
+      <text class="overtime-title">已超时 {{overtimeText}}</text>
+      <text class="overtime-desc">坐太久不健康哦，赶紧起身吧</text>
+      <view class="overtime-btn" catchtap="onFinishGuard">我结束了</view>
+    </view>
+  </view>
+</view>

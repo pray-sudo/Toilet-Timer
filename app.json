@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/report/index",
+    "pages/trend/index",
+    "pages/profile/index",
+    "pages/guard/index",
+    "pages/record-detail/index",
+    "pages/game/index",
+    "pages/settings/index",
+    "pages/privacy/index",
+    "pages/agreement/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#58B947",
+    "navigationBarTitleText": "肛好卫士",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F8FCF2",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

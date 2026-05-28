@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "设置",
+  "usingComponents": {
+    "setting-row": "/components/setting-row/index",
+    "confirm-modal": "/components/confirm-modal/index"
+  }
+}

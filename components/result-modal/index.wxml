@@ -1,0 +1,19 @@
+<view wx:if="{{visible}}" class="result-modal" catchtouchmove="stopPropagation">
+  <view class="result-modal__mask" />
+  <view class="result-modal__panel result-modal__panel--{{resultTag}}">
+    <view class="result-modal__badge result-modal__badge--{{resultTag}}">
+      {{resultTag === 'excellent' ? '🏆' : resultTag === 'good' ? '👍' : resultTag === 'overtime' ? '⏰' : '⚠️'}}
+    </view>
+    <view class="result-modal__title">{{title}}</view>
+    <view class="result-modal__content">{{content}}</view>
+    <view wx:if="{{isGoalAchieved}}" class="result-modal__tag">5分钟内完成</view>
+    <view class="result-modal__actions">
+      <button class="result-modal__btn result-modal__btn--primary" bindtap="handleViewReport">
+        查看今日战报
+      </button>
+      <button class="result-modal__btn result-modal__btn--secondary" bindtap="handleBackHome">
+        返回首页
+      </button>
+    </view>
+  </view>
+</view>

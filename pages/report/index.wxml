@@ -1,0 +1,60 @@
+<view class="report-page page-container">
+  <view class="report-header card">
+    <view class="report-header__title">{{pageTitle}}</view>
+    <view class="report-header__tip">{{healthTip}}</view>
+  </view>
+
+  <date-switcher
+    date-text="{{dateDisplayText}}"
+    is-today="{{isSelectedToday}}"
+    bind:prev="handlePrevDate"
+    bind:next="handleNextDate"
+    bind:backtoday="handleBackToday"
+  />
+
+  <view class="report-stats">
+    <view class="section-title">当日统计</view>
+    <view class="summary-grid">
+      <stat-card
+        wx:for="{{statCards}}"
+        wx:key="label"
+        label="{{item.label}}"
+        value="{{item.value}}"
+        unit="{{item.unit}}"
+      />
+    </view>
+  </view>
+
+  <evaluation-card
+    title="{{evaluation.title}}"
+    desc="{{evaluation.desc}}"
+    theme="{{evaluation.theme}}"
+  />
+
+  <block wx:if="{{hasRecords}}">
+    <view class="report-list">
+      <view class="section-title">单次记录</view>
+      <report-record-card
+        wx:for="{{recordList}}"
+        wx:key="sessionId"
+        session-id="{{item.sessionId}}"
+        time-range-text="{{item.timeRangeText}}"
+        duration-text="{{item.durationText}}"
+        status-line="{{item.statusLine}}"
+        remind-summary="{{item.remindSummary}}"
+        result-tag="{{item.resultTag}}"
+        result-label="{{item.resultLabel}}"
+        bind:tap="handleRecordTap"
+      />
+    </view>
+  </block>
+
+  <view wx:else class="report-empty card">
+    <view class="report-empty__icon">{{emptyIcon}}</view>
+    <view class="report-empty__title">{{emptyTitle}}</view>
+    <view class="report-empty__desc">{{emptyDesc}}</view>
+    <view class="report-empty__action">
+      <primary-button text="{{emptyButtonText}}" bind:tap="handleEmptyAction" />
+    </view>
+  </view>
+</view>

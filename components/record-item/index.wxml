@@ -1,0 +1,10 @@
+<view class="record-item">
+  <view class="record-item__left">
+    <view class="record-item__time">{{timeText}}</view>
+    <view class="record-item__duration">用时 {{durationText}}</view>
+  </view>
+  <view class="record-item__right">
+    <view class="record-item__tag record-item__tag--{{resultTag}}">{{resultLabel}}</view>
+    <view wx:if="{{isGoalAchieved}}" class="record-item__badge">达标</view>
+  </view>
+</view>

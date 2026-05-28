@@ -1,0 +1,15 @@
+<view wx:if="{{visible}}" class="confirm-modal" catchtouchmove="stopPropagation">
+  <view class="confirm-modal__mask" />
+  <view class="confirm-modal__panel">
+    <view class="confirm-modal__title">{{title}}</view>
+    <view class="confirm-modal__content">{{content}}</view>
+    <view class="confirm-modal__actions">
+      <button class="confirm-modal__btn confirm-modal__btn--secondary" bindtap="handleSecondary">
+        {{secondaryText}}
+      </button>
+      <button class="confirm-modal__btn confirm-modal__btn--{{primaryType}}" bindtap="handlePrimary">
+        {{primaryText}}
+      </button>
+    </view>
+  </view>
+</view>

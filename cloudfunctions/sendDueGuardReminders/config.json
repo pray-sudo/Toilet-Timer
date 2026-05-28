@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "sendDueTimer",
+      "type": "timer",
+      "config": "0 */1 * * * * *"
+    }
+  ]
+}

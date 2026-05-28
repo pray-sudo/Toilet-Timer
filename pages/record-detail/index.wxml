@@ -1,0 +1,100 @@
+<view class="record-detail page-container">
+  <block wx:if="{{loaded && !notFound && detail}}">
+    <view class="result-card card result-card--{{detail.resultTag}}">
+      <view class="result-card__label">{{detail.resultLabel}}</view>
+      <view class="result-card__duration">本次用时 {{detail.durationText}}</view>
+      <view class="result-card__desc">{{detail.resultDesc}}</view>
+      <view wx:if="{{detail.isGoalAchieved}}" class="result-card__badge">5分钟内完成</view>
+    </view>
+
+    <view class="info-card card">
+      <view class="section-title">时间信息</view>
+      <view class="info-row">
+        <text class="info-row__label">开始时间</text>
+        <text class="info-row__value">{{detail.startTimeText}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">结束时间</text>
+        <text class="info-row__value">{{detail.endTimeText}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">总时长</text>
+        <text class="info-row__value">{{detail.durationText}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">记录日期</text>
+        <text class="info-row__value">{{detail.dateText}}</text>
+      </view>
+    </view>
+
+    <view class="info-card card" wx:if="{{detail.gameResult}}">
+      <view class="section-title">🎮 调度站战绩</view>
+      <view class="info-row">
+        <text class="info-row__label">服务人数</text>
+        <text class="info-row__value">{{detail.gameResult.servedUsers}} 位</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">清洁隔间</text>
+        <text class="info-row__value">{{detail.gameResult.cleanedStalls}} 间</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">补充厕纸</text>
+        <text class="info-row__value">{{detail.gameResult.refilledPaper}} 次</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">修理故障</text>
+        <text class="info-row__value">{{detail.gameResult.fixedStalls}} 次</text>
+      </view>
+      <view class="info-row">
+        <text class="info-row__label">清理垃圾</text>
+        <text class="info-row__value">{{detail.gameResult.clearedTrash}} 次</text>
+      </view>
+      <view class="info-row" wx:if="{{detail.gameResult.missedUsers > 0}}">
+        <text class="info-row__label">离开的角色</text>
+        <text class="info-row__value">{{detail.gameResult.missedUsers}} 位</text>
+      </view>
+      <view class="info-row" wx:if="{{detail.retreatLabel}}">
+        <text class="info-row__label">撤退评价</text>
+        <text class="info-row__value">{{detail.retreatLabel}}</text>
+      </view>
+      <view class="info-row" wx:if="{{detail.expGained > 0}}">
+        <text class="info-row__label">本局成长值</text>
+        <text class="info-row__value info-row__value--exp">+{{detail.expGained}}</text>
+      </view>
+      <view class="info-row" wx:if="{{detail.toiletLevel}}">
+        <text class="info-row__label">厕所等级</text>
+        <text class="info-row__value info-row__value--level">{{detail.toiletLevel}}星 {{detail.toiletLevelName}}</text>
+      </view>
+      <view class="info-row info-row--upgrade" wx:if="{{detail.toiletUpgraded}}">
+        <text class="info-row__value info-row__value--upgrade">🎉 本次守护升级了厕所！</text>
+      </view>
+    </view>
+
+    <view class="info-card card">
+      <view class="section-title">提醒触发</view>
+      <view class="info-row" wx:for="{{detail.remindDetails}}" wx:key="key">
+        <text class="info-row__label">{{item.label}}</text>
+        <text class="info-row__value">{{item.text}}</text>
+      </view>
+    </view>
+
+    <view class="advice-card card">
+      <view class="section-title">健康建议</view>
+      <view class="advice-card__text">{{detail.healthAdvice}}</view>
+      <view class="advice-card__note">本产品仅提供健康习惯辅助，不构成医疗诊断。</view>
+    </view>
+
+    <view class="record-detail__action">
+      <primary-button text="返回战报" bind:tap="handleBackReport" />
+    </view>
+  </block>
+
+  <empty-state
+    wx:elif="{{loaded && notFound}}"
+    icon="🔍"
+    title="没有找到这条记录"
+    desc="可能数据已被清理或记录不存在"
+    button-text="返回战报"
+    bind:action="handleBackReport"
+  />
+</view>

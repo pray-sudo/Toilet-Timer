@@ -1,0 +1,157 @@
+<view class="home-page">
+  <!-- 背景图片层 -->
+  <view class="home-bg-image-layer">
+    <image
+      class="home-bg-img home-bg-top-air"
+      src="/assets/images/home/home-bg-top-air-2x.png"
+      mode="widthFix"
+    />
+    <image
+      class="home-bg-img home-bg-hero-support"
+      src="/assets/images/home/home-bg-hero-support-2x.png"
+      mode="widthFix"
+    />
+    <image
+      class="home-bg-img home-bg-side-plants"
+      src="/assets/images/home/home-bg-side-plants-2x.png"
+      mode="widthFix"
+    />
+    <image
+      class="home-bg-img home-bg-ground-scene"
+      src="/assets/images/home/home-bg-ground-scene-2x.png"
+      mode="widthFix"
+    />
+  </view>
+
+  <!-- UI 点缀素材层 -->
+  <view class="home-ui-decor-layer">
+    <image
+      class="ui-decor decor-guard-shield"
+      src="/assets/images/home/柔和健康盾徽标.png"
+      mode="widthFix"
+    />
+    <image
+      class="ui-decor decor-care-heart"
+      src="/assets/images/home/温柔的爱心与医疗符号.png"
+      mode="widthFix"
+    />
+    <image
+      class="ui-decor decor-health-badge"
+      src="/assets/images/home/健康标志徽章图标.png"
+      mode="widthFix"
+    />
+    <image
+      class="ui-decor decor-soft-sparkle"
+      src="/assets/images/home/柔和星光与闪烁光点.png"
+      mode="widthFix"
+    />
+    <image
+      class="ui-decor decor-soft-sparkle-small"
+      src="/assets/images/home/柔和星光与闪烁光点.png"
+      mode="widthFix"
+    />
+  </view>
+
+  <!-- 主内容层 -->
+  <view class="main-layout" style="padding-top: {{statusBarHeight}}px;">
+    <view class="top-section">
+      <view class="home-title">肛好卫士</view>
+    </view>
+
+    <view class="visual-action-group">
+      <view class="care-bubble">
+        <text class="care-bubble-text">今天也要好好照顾自己噢～</text>
+        <view class="care-bubble-tail"></view>
+      </view>
+      <image
+        class="mascot"
+        src="/assets/images/home/mascot_hd_2x_transparent.png"
+        mode="widthFix"
+      />
+      <view class="start-btn" hover-class="start-btn--hover" bindtap="handleStartGuard">
+        <image
+          class="start-btn-img"
+          src="/assets/images/home/home-button.png"
+          mode="widthFix"
+        />
+      </view>
+      <view class="time-tip">
+        <view class="time-tip-info">i</view>
+        <text class="time-tip-text">推荐如厕时长  3~5 分钟</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 守护方式 + 时间选择弹窗 -->
+  <view class="time-modal-mask" wx:if="{{showTimePicker}}" catchtap="hideTimePicker">
+    <view class="time-modal" catchtap="noop">
+      <view class="time-modal-title">开启守护</view>
+
+      <!-- 守护方式 -->
+      <view class="mode-section">
+        <view class="mode-label">守护方式</view>
+        <view class="mode-options">
+          <view
+            class="mode-option {{guardMode === 'toilet_dispatch_game' ? 'mode-option--active' : ''}}"
+            catchtap="selectMode" data-mode="toilet_dispatch_game"
+          >
+            <text class="mode-option-icon">🎮</text>
+            <view class="mode-option-text">
+              <text class="mode-option-name">厕所调度站</text>
+              <text class="mode-option-desc">边玩边计时，到点提醒</text>
+            </view>
+            <view class="mode-option-tag" wx:if="{{guardMode === 'toilet_dispatch_game'}}">推荐</view>
+          </view>
+          <view
+            class="mode-option {{guardMode === 'normal' ? 'mode-option--active' : ''}}"
+            catchtap="selectMode" data-mode="normal"
+          >
+            <text class="mode-option-icon">⏱️</text>
+            <view class="mode-option-text">
+              <text class="mode-option-name">普通倒计时</text>
+              <text class="mode-option-desc">安静计时，到点提醒</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 时长选择 -->
+      <view class="mode-label">守护时长</view>
+      <view class="time-modal-options">
+        <view class="time-option {{selectedMinutes === 3 ? 'time-option--active' : ''}}" catchtap="selectTime" data-minutes="3">
+          <text class="time-option-num">3</text>
+          <text class="time-option-unit">分钟</text>
+          <view class="time-option-tag" wx:if="{{guardMode === 'toilet_dispatch_game'}}">快闪</view>
+        </view>
+        <view class="time-option {{selectedMinutes === 5 ? 'time-option--active' : ''}}" catchtap="selectTime" data-minutes="5">
+          <text class="time-option-num">5</text>
+          <text class="time-option-unit">分钟</text>
+          <view class="time-option-tag">推荐</view>
+        </view>
+        <view class="time-option {{selectedMinutes === 8 ? 'time-option--active' : ''}}" catchtap="selectTime" data-minutes="8">
+          <text class="time-option-num">8</text>
+          <text class="time-option-unit">分钟</text>
+          <view class="time-option-tag" wx:if="{{guardMode === 'toilet_dispatch_game'}}">宽松</view>
+        </view>
+      </view>
+
+      <view class="time-modal-actions">
+        <view class="time-modal-btn time-modal-btn--cancel" catchtap="hideTimePicker">取消</view>
+        <view class="time-modal-btn time-modal-btn--confirm" catchtap="confirmTimePicker">开始守护</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部入口层 -->
+  <view class="bottom-entry-area">
+    <view class="entry-card" hover-class="entry-card--hover" bindtap="goReport">
+      <image class="entry-card-img" src="/assets/images/home/home-card-report.png" mode="widthFix" />
+    </view>
+    <view class="entry-card" hover-class="entry-card--hover" bindtap="goTrend">
+      <image class="entry-card-img" src="/assets/images/home/home-card-trend.png" mode="widthFix" />
+    </view>
+    <view class="entry-card" hover-class="entry-card--hover" bindtap="goProfile">
+      <image class="entry-card-img" src="/assets/images/home/home-card-medal.png" mode="widthFix" />
+    </view>
+  </view>
+</view>

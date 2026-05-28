@@ -1,0 +1,8 @@
+<view class="stat-card">
+  <view class="stat-card__label">{{label}}</view>
+  <view class="stat-card__value-row">
+    <text class="stat-card__value">{{value}}</text>
+    <text wx:if="{{unit}}" class="stat-card__unit">{{unit}}</text>
+  </view>
+  <view wx:if="{{subText}}" class="stat-card__sub">{{subText}}</view>
+</view>

@@ -1,0 +1,24 @@
+.primary-button {
+  height: 96rpx;
+  line-height: 96rpx;
+  padding: 0 48rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #6ecf5a 0%, #58b947 100%);
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: 600;
+  box-shadow: 0 12rpx 32rpx rgba(88, 185, 71, 0.35);
+}
+
+.primary-button::after {
+  border: none;
+}
+
+.primary-button--block {
+  width: 100%;
+}
+
+.primary-button--disabled {
+  opacity: 0.5;
+  box-shadow: none;
+}

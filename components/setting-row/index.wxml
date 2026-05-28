@@ -1,0 +1,12 @@
+<view class="setting-row">
+  <view class="setting-row__content">
+    <view class="setting-row__label">{{label}}</view>
+    <view wx:if="{{desc}}" class="setting-row__desc">{{desc}}</view>
+  </view>
+  <switch
+    class="setting-row__switch"
+    checked="{{checked}}"
+    color="#58B947"
+    bindchange="handleChange"
+  />
+</view>

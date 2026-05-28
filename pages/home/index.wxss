@@ -1,0 +1,627 @@
+/* ===== 页面根 ===== */
+page {
+  width: 100%;
+  height: 100%;
+  background: #f4faee;
+}
+
+.home-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #f8fcf2 0%,
+    #f2faea 24%,
+    #e6f4d7 52%,
+    #d7edc2 76%,
+    #cbe8b2 100%
+  );
+}
+
+/* ===== 背景图片层 ===== */
+.home-bg-image-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.home-bg-img {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.home-bg-top-air {
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0.86;
+}
+
+.home-bg-hero-support {
+  left: 0;
+  top: 18vh;
+  width: 100%;
+  max-height: 50vh;
+  opacity: 0.78;
+}
+
+.home-bg-side-plants {
+  left: 0;
+  top: 24vh;
+  width: 100%;
+  max-height: 45vh;
+  opacity: 0.72;
+}
+
+.home-bg-ground-scene {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.92;
+}
+
+/* --- 短屏适配（iPhone SE / 6 / 7 / 8） --- */
+@media screen and (max-height: 667px) {
+  .home-bg-hero-support {
+    top: 15vh;
+    opacity: 0.68;
+  }
+
+  .home-bg-side-plants {
+    top: 28vh;
+    opacity: 0.58;
+  }
+
+  .home-bg-ground-scene {
+    bottom: -70rpx;
+    opacity: 0.82;
+  }
+}
+
+/* --- 长屏适配（iPhone Pro Max / 大屏） --- */
+@media screen and (min-height: 780px) {
+  .home-bg-hero-support {
+    top: 20vh;
+    opacity: 0.82;
+  }
+
+  .home-bg-side-plants {
+    top: 25vh;
+    opacity: 0.78;
+  }
+
+  .home-bg-ground-scene {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+/* ===== UI 点缀素材层 ===== */
+.home-ui-decor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ui-decor {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.decor-health-badge {
+  left: 34rpx;
+  top: 390rpx;
+  width: 132rpx;
+  opacity: 0.82;
+}
+
+.decor-guard-shield {
+  right: 32rpx;
+  top: 330rpx;
+  width: 130rpx;
+  opacity: 0.86;
+}
+
+.decor-care-heart {
+  left: 86rpx;
+  top: 618rpx;
+  width: 86rpx;
+  opacity: 0.78;
+}
+
+.decor-soft-sparkle {
+  right: 72rpx;
+  top: 644rpx;
+  width: 98rpx;
+  opacity: 0.72;
+}
+
+.decor-soft-sparkle-small {
+  left: 60rpx;
+  top: 875rpx;
+  width: 72rpx;
+  opacity: 0.52;
+}
+
+/* --- UI 点缀：短屏适配 --- */
+@media screen and (max-height: 667px) {
+  .decor-health-badge {
+    left: 24rpx;
+    top: 420rpx;
+    width: 110rpx;
+    opacity: 0.72;
+  }
+
+  .decor-guard-shield {
+    top: 310rpx;
+    width: 110rpx;
+    opacity: 0.76;
+  }
+
+  .decor-care-heart {
+    left: 76rpx;
+    top: 590rpx;
+    width: 72rpx;
+    opacity: 0.68;
+  }
+
+  .decor-soft-sparkle {
+    right: 62rpx;
+    top: 616rpx;
+    width: 82rpx;
+    opacity: 0.62;
+  }
+
+  .decor-soft-sparkle-small {
+    top: 845rpx;
+    width: 60rpx;
+    opacity: 0.42;
+  }
+}
+
+/* --- UI 点缀：长屏适配 --- */
+@media screen and (min-height: 780px) {
+  .decor-health-badge {
+    top: 410rpx;
+    width: 140rpx;
+    opacity: 0.84;
+  }
+
+  .decor-guard-shield {
+    top: 345rpx;
+    width: 138rpx;
+    opacity: 0.88;
+  }
+
+  .decor-care-heart {
+    left: 90rpx;
+    top: 640rpx;
+    width: 92rpx;
+    opacity: 0.80;
+  }
+
+  .decor-soft-sparkle {
+    right: 76rpx;
+    top: 668rpx;
+    width: 106rpx;
+    opacity: 0.74;
+  }
+
+  .decor-soft-sparkle-small {
+    top: 905rpx;
+    width: 78rpx;
+    opacity: 0.54;
+  }
+}
+
+/* ===== 主内容层 ===== */
+.main-layout {
+  position: relative;
+  z-index: 10;
+  height: calc(100vh - 250rpx);
+  padding-top: 96rpx;
+  padding-left: 32rpx;
+  padding-right: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ---- 顶部标题 ---- */
+.top-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  line-height: 44rpx;
+  color: #2f3d32;
+  letter-spacing: 1rpx;
+}
+
+/* ===== 视觉主体组 ===== */
+.visual-action-group {
+  flex: 1;
+  width: 100%;
+  min-height: 760rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20rpx;
+}
+
+/* ---- 气泡 ---- */
+.care-bubble {
+  position: relative;
+  min-width: 300rpx;
+  max-width: 520rpx;
+  height: 68rpx;
+  padding: 0 38rpx;
+  border-radius: 34rpx;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 255, 230, 0.92) 100%);
+  box-shadow:
+    0 6rpx 20rpx rgba(92, 168, 70, 0.14),
+    inset 0 1rpx 0 rgba(255, 255, 255, 1);
+  border: 1rpx solid rgba(180, 220, 160, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.care-bubble-text {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #4a7a3e;
+  line-height: 68rpx;
+  white-space: nowrap;
+}
+
+.care-bubble-tail {
+  position: absolute;
+  bottom: -7rpx;
+  left: 50%;
+  margin-left: -8rpx;
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 8rpx solid rgba(245, 255, 238, 0.94);
+}
+
+/* ---- 吉祥物 ---- */
+.mascot {
+  width: 540rpx;
+  max-width: 540rpx;
+  display: block;
+  margin-bottom: 18rpx;
+}
+
+/* ---- 按钮 ---- */
+.start-btn {
+  width: 580rpx;
+  max-width: 82vw;
+  min-width: 500rpx;
+  height: auto;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.14s ease, opacity 0.14s ease;
+}
+
+.start-btn-img {
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.start-btn--hover {
+  transform: scale(0.965) translateY(2rpx);
+  opacity: 0.92;
+}
+
+/* ---- 按钮：短屏适配 ---- */
+@media screen and (max-height: 667px) {
+  .start-btn {
+    width: 520rpx;
+    margin-top: -4rpx;
+  }
+}
+
+/* ---- 按钮：长屏适配 ---- */
+@media screen and (min-height: 780px) {
+  .start-btn {
+    width: 600rpx;
+  }
+}
+
+/* ---- 推荐时长 ---- */
+.time-tip {
+  margin-top: 12rpx;
+  height: 48rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-tip-info {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  border-radius: 50%;
+  border: 2rpx solid #6a9a58;
+  font-size: 15rpx;
+  font-weight: 700;
+  font-style: italic;
+  color: #6a9a58;
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.time-tip-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #4a7a3e;
+  line-height: 48rpx;
+}
+
+/* ===== 底部入口层 ===== */
+.bottom-entry-area {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(28rpx + env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 16rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+
+.entry-card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28rpx;
+  overflow: hidden;
+  transition: opacity 0.14s ease;
+}
+
+.entry-card--hover {
+  opacity: 0.88;
+}
+
+.entry-card-img {
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* --- 底部卡片：短屏适配 --- */
+@media screen and (max-height: 667px) {
+  .bottom-entry-area {
+    bottom: calc(20rpx + env(safe-area-inset-bottom));
+    padding: 0 20rpx;
+    gap: 12rpx;
+  }
+}
+
+/* --- 底部卡片：长屏适配 --- */
+@media screen and (min-height: 780px) {
+  .bottom-entry-area {
+    bottom: calc(34rpx + env(safe-area-inset-bottom));
+    padding: 0 26rpx;
+    gap: 18rpx;
+  }
+}
+
+/* ===== 时间选择弹窗 ===== */
+.time-modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.time-modal {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 48rpx 40rpx calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.time-modal-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 8rpx;
+}
+
+/* 守护方式选择 */
+.mode-section {
+  margin-bottom: 4rpx;
+}
+
+.mode-label {
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.mode-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 24rpx;
+  border-radius: 20rpx;
+  background: #f5f7f0;
+  border: 2rpx solid transparent;
+  position: relative;
+  transition: all 0.15s;
+}
+
+.mode-option--active {
+  background: #eef7e6;
+  border-color: #58b947;
+}
+
+.mode-option-icon {
+  font-size: 40rpx;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.mode-option-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mode-option-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.mode-option--active .mode-option-name {
+  color: #3d8b32;
+}
+
+.mode-option-desc {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.mode-option--active .mode-option-desc {
+  color: #6aaa58;
+}
+
+.mode-option-tag {
+  font-size: 18rpx;
+  color: #fff;
+  background: #58b947;
+  padding: 4rpx 14rpx;
+  border-radius: 16rpx;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.time-modal-options {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+}
+
+.time-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28rpx 0;
+  border-radius: 20rpx;
+  background: #f5f7f0;
+  border: 2rpx solid transparent;
+  position: relative;
+}
+
+.time-option--active {
+  background: #eef7e6;
+  border-color: #58b947;
+}
+
+.time-option-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.2;
+}
+
+.time-option--active .time-option-num {
+  color: #3d8b32;
+}
+
+.time-option-unit {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.time-option--active .time-option-unit {
+  color: #58b947;
+}
+
+.time-option-tag {
+  position: absolute;
+  top: -1rpx;
+  right: -1rpx;
+  font-size: 18rpx;
+  color: #fff;
+  background: #58b947;
+  padding: 2rpx 12rpx;
+  border-radius: 0 18rpx 0 12rpx;
+  line-height: 1.5;
+}
+
+.time-modal-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+}
+
+.time-modal-btn {
+  flex: 1;
+  height: 88rpx;
+  border-radius: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.time-modal-btn--cancel {
+  background: #f2f2f2;
+  color: #666;
+}
+
+.time-modal-btn--confirm {
+  background: linear-gradient(135deg, #6cc258 0%, #4a9e3c 100%);
+  color: #fff;
+}

@@ -1,0 +1,8 @@
+<view class="quick-entry" bindtap="handleTap">
+  <view class="quick-entry__icon">{{icon}}</view>
+  <view class="quick-entry__content">
+    <view class="quick-entry__title">{{title}}</view>
+    <view class="quick-entry__desc">{{desc}}</view>
+  </view>
+  <view class="quick-entry__arrow">›</view>
+</view>

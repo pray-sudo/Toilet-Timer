@@ -1,0 +1,141 @@
+<view class="settings-page page-container">
+  <view class="settings-header card">
+    <view class="settings-header__title">设置</view>
+    <view class="settings-header__desc">根据你的习惯，调整守护提醒方式。</view>
+  </view>
+
+  <view class="settings-section card">
+    <view class="settings-section__title">提醒设置</view>
+    <setting-row
+      label="震动提醒"
+      desc="到达提醒节点时进行震动提示"
+      setting-key="vibrationEnabled"
+      checked="{{settings.vibrationEnabled}}"
+      bind:change="handleSwitchChange"
+    />
+    <setting-row
+      label="提示音提醒"
+      desc="到达提醒节点时播放轻提示音"
+      setting-key="soundEnabled"
+      checked="{{settings.soundEnabled}}"
+      bind:change="handleSwitchChange"
+    />
+    <setting-row
+      label="5分钟温和提醒"
+      desc="达成推荐目标后温柔提醒你撤退"
+      setting-key="remind5Enabled"
+      checked="{{settings.remind5Enabled}}"
+      bind:change="handleSwitchChange"
+    />
+    <setting-row
+      label="8分钟强提醒"
+      desc="时间偏长时提醒你尽快结束"
+      setting-key="remind8Enabled"
+      checked="{{settings.remind8Enabled}}"
+      bind:change="handleSwitchChange"
+    />
+    <setting-row
+      label="10分钟风险提醒"
+      desc="进入风险时间段时明确提醒"
+      setting-key="remind10Enabled"
+      checked="{{settings.remind10Enabled}}"
+      bind:change="handleSwitchChange"
+    />
+  </view>
+
+  <view class="settings-section card">
+    <view class="settings-section__title">离开提醒</view>
+    <setting-row
+      label="离开后微信提醒"
+      desc="开启后，每次开始守护时会提示你授权本次微信服务通知。"
+      setting-key="wechatReminderEnabled"
+      checked="{{settings.wechatReminderEnabled}}"
+      bind:change="handleSwitchChange"
+    />
+  </view>
+
+  <view class="settings-section card">
+    <view class="settings-section__title">守护体验</view>
+    <view class="style-setting">
+      <view class="style-setting__label">默认守护方式</view>
+      <view class="style-setting__desc">每次开启守护时的默认选中项</view>
+      <view class="style-setting__options">
+        <view
+          class="style-setting__option {{guardMode === 'toilet_dispatch_game' ? 'style-setting__option--active' : ''}}"
+          data-mode="toilet_dispatch_game"
+          bindtap="handleGuardModeChange"
+        >
+          🎮 厕所调度站
+        </view>
+        <view
+          class="style-setting__option {{guardMode === 'normal' ? 'style-setting__option--active' : ''}}"
+          data-mode="normal"
+          bindtap="handleGuardModeChange"
+        >
+          普通计时
+        </view>
+      </view>
+    </view>
+    <setting-row
+      label="守护中保持屏幕常亮"
+      desc="避免计时过程中屏幕自动熄灭"
+      setting-key="keepScreenOnEnabled"
+      checked="{{settings.keepScreenOnEnabled}}"
+      bind:change="handleSwitchChange"
+    />
+    <view class="style-setting">
+      <view class="style-setting__label">提醒文案风格</view>
+      <view class="style-setting__options">
+        <view
+          class="style-setting__option {{copyStyle === 'funny' ? 'style-setting__option--active' : ''}}"
+          data-style="funny"
+          bindtap="handleCopyStyleChange"
+        >
+          幽默版
+        </view>
+        <view
+          class="style-setting__option {{copyStyle === 'normal' ? 'style-setting__option--active' : ''}}"
+          data-style="normal"
+          bindtap="handleCopyStyleChange"
+        >
+          普通版
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="settings-section card">
+    <view class="settings-section__title">数据管理</view>
+    <view class="clear-data" bindtap="handleClearTap">
+      <view class="clear-data__title">清空本地数据</view>
+      <view class="clear-data__desc">将清空所有守护记录和勋章进度，但会保留你的提醒设置。</view>
+    </view>
+  </view>
+
+  <view class="settings-footer">
+    <view>肛好卫士仅用于帮助你记录和改善如厕久蹲习惯，不提供医疗诊断或治疗建议。</view>
+    <view class="settings-footer__sub">如有便血、疼痛、脱出等明显不适，请及时咨询医生。</view>
+  </view>
+
+  <confirm-modal
+    visible="{{showClearConfirm}}"
+    title="确定清空本地数据？"
+    content="清空后，历史战报、趋势数据和勋章进度将无法恢复，但提醒设置会保留。"
+    primary-text="确认清空"
+    secondary-text="取消"
+    primary-type="danger"
+    bind:primary="handleClearFirstConfirm"
+    bind:secondary="handleClearCancel"
+  />
+
+  <confirm-modal
+    visible="{{showClearConfirmFinal}}"
+    title="再次确认"
+    content="该操作无法恢复，确定继续吗？"
+    primary-text="清空"
+    secondary-text="我再想想"
+    primary-type="danger"
+    bind:primary="handleClearFinalConfirm"
+    bind:secondary="handleClearFinalCancel"
+  />
+</view>

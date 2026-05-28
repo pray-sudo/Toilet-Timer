@@ -1,0 +1,19 @@
+# 微信开发者工具
+node_modules/
+miniprogram_npm/
+.idea/
+.vscode/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 云函数依赖
+cloudfunctions/*/node_modules/
+
+# 构建产物
+dist/
+build/
+
+# 本地配置（含个人 appid 等）
+project.private.config.json

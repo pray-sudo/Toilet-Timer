@@ -1,0 +1,47 @@
+<view class="legal-page page-container">
+  <view class="legal-card card">
+    <view class="legal-title">用户协议</view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">1. 产品说明</view>
+      <view class="legal-section__text">
+        肛好卫士是一款帮助用户记录如厕时长、减少无效久蹲、养成健康习惯的小程序工具，不是医疗产品，也不承诺任何治疗效果。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">2. 用户使用规则</view>
+      <view class="legal-section__text">
+        请合理使用本小程序，不要将其作为医疗诊断、治疗或紧急健康处理依据。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">3. 健康内容说明</view>
+      <view class="legal-section__text">
+        小程序中的提醒、战报和趋势内容，仅用于一般健康习惯提示，不代表医学诊断结论。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">4. 数据记录说明</view>
+      <view class="legal-section__text">
+        小程序会根据你的使用行为生成本地守护记录，用于展示战报和趋势。你可以在「我的 - 设置」中清空这些数据。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">5. 免责声明</view>
+      <view class="legal-section__text">
+        因个体差异，如厕习惯和身体状况各不相同。本产品无法判断你的具体健康状态。如有明显不适，请及时寻求专业医疗帮助。
+      </view>
+    </view>
+
+    <view class="legal-section">
+      <view class="legal-section__title">6. 协议更新</view>
+      <view class="legal-section__text">
+        如产品功能发生变化，我们可能会更新本协议内容，并在小程序中进行提示。
+      </view>
+    </view>
+  </view>
+</view>

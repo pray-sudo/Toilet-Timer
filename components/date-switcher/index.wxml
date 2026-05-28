@@ -1,0 +1,8 @@
+<view class="date-switcher card">
+  <view class="date-switcher__row">
+    <view class="date-switcher__btn" bindtap="handlePrev">‹ 前一天</view>
+    <view class="date-switcher__current">{{dateText}}</view>
+    <view class="date-switcher__btn" bindtap="handleNext">后一天 ›</view>
+  </view>
+  <view wx:if="{{!isToday}}" class="date-switcher__back" bindtap="handleBackToday">回到今天</view>
+</view>

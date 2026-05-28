@@ -1,0 +1,44 @@
+.quick-entry {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 20rpx;
+  padding: 28rpx 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(38, 50, 56, 0.05);
+}
+
+.quick-entry__icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  background: #eaf7e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+.quick-entry__content {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
+}
+
+.quick-entry__title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #263238;
+}
+
+.quick-entry__desc {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.quick-entry__arrow {
+  font-size: 40rpx;
+  color: #9ca3af;
+  margin-left: 12rpx;
+}

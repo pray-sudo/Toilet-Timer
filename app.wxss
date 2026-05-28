@@ -1,0 +1,54 @@
+page {
+  --primary-color: #58B947;
+  --primary-light: #EAF7E8;
+  --primary-dark: #3D8B32;
+  --text-main: #263238;
+  --text-secondary: #6B7280;
+  --text-light: #9CA3AF;
+  --bg-page: #F7FAF5;
+  --bg-card: #FFFFFF;
+  --warning-color: #F59E0B;
+  --danger-color: #E5484D;
+  --shadow-card: 0 8rpx 32rpx rgba(38, 50, 56, 0.06);
+  --radius-card: 24rpx;
+  --radius-btn: 999rpx;
+
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-size: 28rpx;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+view,
+text,
+button {
+  box-sizing: border-box;
+}
+
+.page-container {
+  min-height: 100vh;
+  padding: 32rpx;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 24rpx;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-light {
+  color: var(--text-light);
+}

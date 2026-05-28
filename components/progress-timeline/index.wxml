@@ -1,0 +1,15 @@
+<view class="progress-timeline">
+  <view class="progress-timeline__track">
+    <view class="progress-timeline__fill" style="width: {{progressPercent}}%;" />
+    <view
+      wx:for="{{nodes}}"
+      wx:key="key"
+      class="progress-timeline__node {{item.active ? 'progress-timeline__node--active' : ''}}"
+      style="left: {{item.position}}%;"
+    >
+      <view class="progress-timeline__dot" />
+      <view class="progress-timeline__label">{{item.label}}</view>
+      <view class="progress-timeline__desc">{{item.desc}}</view>
+    </view>
+  </view>
+</view>

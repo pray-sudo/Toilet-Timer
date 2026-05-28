@@ -1,0 +1,15 @@
+<view class="report-record-card card" bindtap="handleTap">
+  <view class="report-record-card__main">
+    <view class="report-record-card__time">{{timeRangeText}}</view>
+    <view class="report-record-card__duration">用时 {{durationText}}</view>
+    <view class="report-record-card__status">
+      <text class="report-record-card__tag report-record-card__tag--{{resultTag}}">{{resultLabel}}</text>
+      <text class="report-record-card__sub">{{statusLine}}</text>
+    </view>
+    <view class="report-record-card__remind">{{remindSummary}}</view>
+  </view>
+  <view class="report-record-card__action">
+    <text>查看详情</text>
+    <text class="report-record-card__arrow">›</text>
+  </view>
+</view>

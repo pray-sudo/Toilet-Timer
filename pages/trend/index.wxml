@@ -1,0 +1,90 @@
+<view class="trend-page page-container">
+  <view class="page-intro card">
+    <view class="page-intro__title">健康趋势</view>
+    <view class="page-intro__desc">
+      积累几天记录后，就能看到趋势变化啦～
+    </view>
+  </view>
+
+  <block wx:if="{{hasData}}">
+    <view class="trend-stats">
+      <view class="section-title">近7天摘要</view>
+      <view class="summary-grid">
+        <stat-card
+          wx:for="{{statCards}}"
+          wx:key="label"
+          label="{{item.label}}"
+          value="{{item.value}}"
+          unit="{{item.unit}}"
+        />
+      </view>
+    </view>
+
+    <view class="trend-chart card">
+      <view class="section-title">每日时长趋势</view>
+      <view class="chart-area">
+        <view class="chart-y-axis">
+          <text class="chart-y-label">{{chartMaxLabel}}</text>
+          <text class="chart-y-label">0</text>
+        </view>
+        <view class="chart-bars-wrap">
+          <view class="chart-bars">
+            <view class="chart-bar-col" wx:for="{{chartBars}}" wx:key="date">
+              <view class="chart-bar-value" wx:if="{{!item.isEmpty}}">{{item.totalMin}}分</view>
+              <view
+                class="chart-bar {{item.isToday ? 'chart-bar--today' : ''}}"
+                style="height: {{item.heightPct}}%; background: {{item.isEmpty ? '#e5e7eb' : item.barColor}};"
+              >
+                <view class="chart-bar-count" wx:if="{{!item.isEmpty}}">{{item.count}}次</view>
+              </view>
+              <view class="chart-bar-label {{item.isToday ? 'chart-bar-label--today' : ''}}">{{item.weekday}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{hasGameStats}}" class="trend-game card">
+      <view class="section-title">🎮 调度站周报</view>
+      <view class="summary-grid">
+        <stat-card label="完成调度" value="{{gameStats.count}}" unit="次" />
+        <stat-card label="服务小伙伴" value="{{gameStats.totalServed}}" unit="位" />
+        <stat-card label="处理任务" value="{{gameStats.totalTasks}}" unit="次" />
+      </view>
+    </view>
+
+    <view wx:if="{{hasToiletProgress}}" class="trend-toilet card">
+      <view class="section-title">🏠 厕所成长</view>
+      <view class="toilet-level-badge">
+        <text class="toilet-level-stars">{{toiletProgress.permanentLevel}}星</text>
+        <text class="toilet-level-name">{{toiletProgress.levelName}}</text>
+      </view>
+      <view class="toilet-progress-bar">
+        <view class="toilet-progress-bar__fill" style="width: {{toiletProgress.expPct}}%;"></view>
+      </view>
+      <view class="toilet-progress-info">
+        <text wx:if="{{!toiletProgress.isMax}}">距离{{toiletProgress.nextName}}还差 {{toiletProgress.remaining}} 成长值</text>
+        <text wx:if="{{toiletProgress.isMax}}">已达到最高等级！</text>
+      </view>
+      <view class="summary-grid">
+        <stat-card label="累计服务" value="{{toiletProgress.totalServedUsers}}" unit="位" />
+        <stat-card label="按时守护" value="{{toiletProgress.totalOnTimeSessions}}" unit="次" />
+        <stat-card label="完成守护" value="{{toiletProgress.totalFinishedSessions}}" unit="次" />
+      </view>
+    </view>
+
+    <view wx:if="{{recentRiskCount > 0}}" class="trend-risk-tip card">
+      <view class="trend-risk-tip__icon">⚠️</view>
+      <text class="trend-risk-tip__text">近7天有 {{recentRiskCount}} 次时长偏长，建议减少久蹲刷手机。</text>
+    </view>
+  </block>
+
+  <view wx:else class="trend-empty card">
+    <view class="trend-empty__icon">📉</view>
+    <view class="trend-empty__title">暂无趋势数据</view>
+    <view class="trend-empty__desc">积累几天记录后，就能看到习惯变化啦～</view>
+    <view class="trend-empty__action">
+      <primary-button text="开始守护" bind:tap="handleStartGuard" />
+    </view>
+  </view>
+</view>
